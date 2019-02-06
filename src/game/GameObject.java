@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 /**
  * Represents any object which is drawn to the screen.
@@ -16,6 +10,7 @@ import java.awt.image.BufferedImage;
  *
  * ALT + SHIFT + F = auto re-factor
  *
+ * @version 0.1.0
  * @author Mo
  */
 public abstract class GameObject {
@@ -24,53 +19,71 @@ public abstract class GameObject {
     protected int y;
     protected int width;
     protected int height;
-    
     protected Rectangle hitbox;
-
-    BufferedImage image;
 
     abstract void gameUpdate();
 
     abstract void gameRender(Graphics2D g);
-    
-    
+
     //Getters and Setter
-    public void setX(int x) {
+    /**
+     * Sets the position and size of the game object
+     *
+     * @param x the x position to set
+     * @param y the y position to set
+     * @param width the width to set
+     * @param height the height to set
+     */
+    public void setGameObject(int x, int y, int width, int height) {
         this.x = x;
-    }
-
-    public void setY(int y) {
         this.y = y;
-    }
-
-    public void setWidth(int width) {
         this.width = width;
-    }
-
-    public void setHeight(int height) {
         this.height = height;
     }
 
-    public int getY() {
-        return y;
-    }
-
+    /**
+     * Gets the x position of the game object
+     *
+     * @return x position
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Gets the y position of the game object
+     *
+     * @return y position
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * Gets the width of the game object
+     *
+     * @return width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Gets the height of the game object
+     *
+     * @return height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Returns the bounding rectangle of the current game object
+     *
+     * @return
+     */
     public Rectangle getHitbox() {
         return hitbox;
     }
-    
-    
 
 }

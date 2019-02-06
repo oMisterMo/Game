@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package game;
-import java.awt.Dimension;
+
 import javax.swing.JFrame;
+
 /**
  * Main Class
- * 
+ *
  * 25/01/2014
- * 
+ *
+ * @version 0.1.0
  * @author Mo
  */
 public class Game {
@@ -23,15 +19,15 @@ public class Game {
         // TODO code application logic here
         JFrame window = new JFrame("First Game");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         GamePanel game = new GamePanel();
         window.add(game);
-        
+
         window.pack();
         window.setSize(600, 600);
         window.setLocationRelativeTo(null);
         window.setResizable(false);
         window.setVisible(true);
     }
-    
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.awt.Color;
@@ -11,19 +6,29 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 /**
+ * A simple player object
  *
+ * @version 0.1.0
  * @author Mo
  */
 public class Player extends GameObject {
-    
+
     private int dx;
     private int dy;
-    
+
     private Color color;
     private short red;
     private short green;
     private short blue;
 
+    /**
+     * Constructs a new player object at x,y with width, height
+     *
+     * @param x the x position
+     * @param y this y position
+     * @param width the width of the player
+     * @param height the height of the player
+     */
     public Player(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -39,54 +44,65 @@ public class Player extends GameObject {
         green = 255;
         blue = 140;
         color = new Color(red, green, blue);
-        
-        
+
         //Speed/direction player moves
         dx = 0;
         dy = 0;
     }
 
-    //Move when key is pressed
+    /**
+     * Listens for key press and reacts accordingly
+     *
+     * Move player up, down, left, right when key is pressed
+     *
+     * @param e key event
+     */
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_UP) {
-            dy = -1;
+            dy = -3;
         }
         if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+            dx = -3;
         }
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
+            dx = 3;
         }
         if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
+            dy = 3;
         }
-        
+
         //Increment color depending on button pressed
-        if (key == KeyEvent.VK_R){
-            if(red>=255){
+        if (key == KeyEvent.VK_R) {
+            red += 4;
+            if (red >= 255) {
                 red = 0;
             }
-            red++;
+            color = new Color(red, green, blue);
         }
-        if (key == KeyEvent.VK_G){
-            if(green>=255){
+        if (key == KeyEvent.VK_G) {
+            green += 4;
+            if (green >= 255) {
                 green = 0;
             }
-            green++;
+            color = new Color(red, green, blue);
         }
-        if (key == KeyEvent.VK_B){
-            if(blue>=255){
+        if (key == KeyEvent.VK_B) {
+            blue += 4;
+            if (blue >= 255) {
                 blue = 0;
             }
-            blue++;
+            color = new Color(red, green, blue);
         }
-        color = new Color(red, green, blue);
-        
+
     }
 
-    //Stop moving when the key is released
+    /**
+     * Stop moving when the key is released
+     *
+     * @param e key event
+     */
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -111,7 +127,7 @@ public class Player extends GameObject {
             x = 0;
         }
         //To the botom
-        if(y > GamePanel.GAME_HEIGHT - height){
+        if (y > GamePanel.GAME_HEIGHT - height) {
             y = 0;
         }
         //To the left
@@ -119,24 +135,25 @@ public class Player extends GameObject {
             x = GamePanel.GAME_WIDTH - width;
         }
         //To the top
-        if(y < 0){
+        if (y < 0) {
             y = GamePanel.GAME_HEIGHT - height;
         }
 //        if (x < GamePanel.GAME_WIDTH - width || y < GamePanel.GAME_HEIGHT - height) {
 //            x = GamePanel.GAME_WIDTH - width;
 //            y = GamePanel.GAME_HEIGHT - height;
 //        }
-        x+=dx;
-        y+=dy;
+        x += dx;
+        y += dy;
+
+        hitbox.x = x;
+        hitbox.y = y;
     }
 
     @Override
     void gameRender(Graphics2D g) {
         g.setColor(color);
         g.fillRect(x, y, width, height);
+        //g.setColor(Color.BLACK);
+        //g.fill(hitbox);
     }
-    
-    //Getters and Setters
-    
-
 }
